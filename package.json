@@ -1,0 +1,19 @@
+{
+  "name": "pokedex-api",
+  "version": "1.0.0",
+  "description": "Pokedex API (Gen 1)",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Vitsarut Nannon (vitsarut.n@hotmail.com)",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
