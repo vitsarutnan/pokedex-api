@@ -1,3 +1,6 @@
+## About
+Pokédex Generation 1 (National Pokédex number 1 - 151)
+
 ## Thanks
 
 dataset of all Pokemons.
