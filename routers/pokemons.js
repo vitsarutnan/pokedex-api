@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const pokedexGen1 = require('../pokemon.json/pokedex.json').slice(0, 151);
+const POKEMONS = require('../pokemon.json/pokedex.json');
 
 const LANGUAGES_SHORT = {
     eng: 'english',
@@ -30,7 +30,7 @@ const TYPES_LIST = [
 ];
 
 router.get('/', (req, res) => {
-    res.json(pokedexGen1);
+    res.json(POKEMONS);
 });
 
 router.get('/name/:lang/:name', (req, res) => {
@@ -42,7 +42,7 @@ router.get('/name/:lang/:name', (req, res) => {
             .json({ params: { lang: lang.toLowerCase(), name: name.toLowerCase() }, msg: "It's have something wrong" });
     }
 
-    const pokemon = pokedexGen1.filter((pokemon) => {
+    const pokemon = POKEMONS.filter((pokemon) => {
         return pokemon['name'][LANGUAGES_SHORT[lang.toLowerCase()]].toLowerCase().includes(name.toLowerCase());
     });
     ß;
@@ -52,11 +52,11 @@ router.get('/name/:lang/:name', (req, res) => {
 router.get('/id/:id', (req, res) => {
     const { id } = req.params;
 
-    if (!id || parseInt(id) < 1 || parseInt(id) > 151 || isNaN(parseInt(id))) {
+    if (!id || parseInt(id) < 1 || parseInt(id) > POKEMONS.length || isNaN(parseInt(id))) {
         return res.status(400).json({ params: { id }, msg: "It's have something wrong" });
     }
 
-    const pokemon = pokedexGen1.filter((pokemon) => pokemon.id === parseInt(id));
+    const pokemon = POKEMONS.filter((pokemon) => pokemon.id === parseInt(id));
     return res.status(200).json(pokemon);
 });
 
@@ -70,7 +70,7 @@ router.get('/type/:type', (req, res) => {
         });
     }
 
-    const pokemon = pokedexGen1.filter((pokemon) => {
+    const pokemon = POKEMONS.filter((pokemon) => {
         return pokemon.type.map((type) => type.toLowerCase()).includes(type.toLowerCase());
     });
 
