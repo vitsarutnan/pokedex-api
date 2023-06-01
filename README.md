@@ -1,5 +1,5 @@
 ## About
-Pokédex Generation 1 (National Pokédex number 1 - 151)
+Pokédex (National Pokédex number 1 - 809)
 
 ## Thanks
 
