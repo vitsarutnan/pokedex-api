@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const POKEMONS = require('../pokemon.json/pokedex.json');
 
-const LANGUAGES_SHORT = {
+const LANGUAGES_LIST = {
     eng: 'english',
     jpn: 'japanese',
     chs: 'chinese',
@@ -36,16 +36,16 @@ router.get('/', (req, res) => {
 router.get('/name/:lang/:name', (req, res) => {
     const { lang, name } = req.params;
 
-    if (!lang || !name || !Object.keys(LANGUAGES_SHORT).includes(lang.toLowerCase())) {
+    if (!lang || !name || !Object.keys(LANGUAGES_LIST).includes(lang.toLowerCase())) {
         return res
             .status(400)
             .json({ params: { lang: lang.toLowerCase(), name: name.toLowerCase() }, msg: "It's have something wrong" });
     }
 
     const pokemon = POKEMONS.filter((pokemon) => {
-        return pokemon['name'][LANGUAGES_SHORT[lang.toLowerCase()]].toLowerCase().includes(name.toLowerCase());
+        return pokemon['name'][LANGUAGES_LIST[lang.toLowerCase()]].toLowerCase().includes(name.toLowerCase());
     });
-    ß;
+    
     return res.status(200).json(pokemon);
 });
 
