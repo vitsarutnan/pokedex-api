@@ -29,7 +29,7 @@ router.get('/types', (req, res) => {
 router.get('/id/:id', (req, res) => {
     const { id } = req.params;
 
-    if (!id || parseInt(id) < 1 || parseInt(id) > ITEMS.length || isNaN(parseInt(id))) {
+    if (parseInt(id) < 1 || parseInt(id) > ITEMS.length || isNaN(parseInt(id))) {
         return res.status(400).json({ params: { id }, msg: "It's have something wrong" });
     }
 
@@ -40,10 +40,7 @@ router.get('/id/:id', (req, res) => {
 router.get('/types/:type', (req, res) => {
     const { type } = req.params;
 
-    if (
-        !type ||
-        !ITEM_TYPES_LIST.map(Function.prototype.call, String.prototype.toLowerCase).includes(type.toLowerCase())
-    ) {
+    if (!ITEM_TYPES_LIST.map(Function.prototype.call, String.prototype.toLowerCase).includes(type.toLowerCase())) {
         return res.status(400).json({ params: { type: type.toLowerCase() }, msg: "It's have something wrong" });
     }
 
@@ -55,7 +52,7 @@ router.get('/types/:type', (req, res) => {
 router.get('/name/:lang/:name', (req, res) => {
     const { lang, name } = req.params;
 
-    if (!lang || !name || !Object.keys(LANGUAGES_LIST).includes(lang.toLowerCase())) {
+    if (!Object.keys(LANGUAGES_LIST).includes(lang.toLowerCase())) {
         return res
             .status(400)
             .json({ params: { lang: lang.toLowerCase(), name: name.toLowerCase() }, msg: "It's have something wrong" });
